@@ -25,12 +25,21 @@ void Mesh::CreateMesh(GLfloat* vertices, unsigned int* indices, unsigned int num
 
 	//after adding texture
 	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 5, 0);
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 5, 0); //befoire lighting
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8, 0);
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 5,
-							(void*)(sizeof(vertices[0]) * 3)); //must remain like unsigned int void* pointer
+	//glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 5,
+	//						(void*)(sizeof(vertices[0]) * 3)); //must remain like unsigned int void* pointer
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+		(void*)(sizeof(vertices[0]) * 3)); //must remain like unsigned int void* pointer
 	glEnableVertexAttribArray(1);
+
+
+	//lighting
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(vertices[0]) * 8,
+		(void*)(sizeof(vertices[0]) * 5)); //must remain like unsigned int void* pointer
+	glEnableVertexAttribArray(2);
 
 	//NOTE: we can put enableVertexAttrib somewhere else, like in renderMesh (later for m,ore readability and less code)
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
