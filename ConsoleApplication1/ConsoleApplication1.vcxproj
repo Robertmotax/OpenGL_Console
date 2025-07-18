@@ -148,7 +148,9 @@
     </ClCompile>
     <ClCompile Include="index.cpp" />
     <ClCompile Include="interpolation.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="projection.cpp" />
     <ClCompile Include="rotate.cpp" />
@@ -158,10 +160,13 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="translate.cpp" />
     <ClCompile Include="uniform.cpp" />
+    <ClCompile Include="util.h" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
