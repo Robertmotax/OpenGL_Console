@@ -74,6 +74,11 @@ glm::vec3 Camera::getCameraPosition()
 	return position;
 }
 
+glm::vec3 Camera::getCameraDirection() 
+{
+	return glm::normalize(front);
+}
+
 glm::mat4 Camera::calculateViewMatrix()
 {
 	// lookAt designed for camera--- calculate matrix that apllies all correct rotations / translations

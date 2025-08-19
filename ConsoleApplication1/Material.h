@@ -13,7 +13,7 @@ public:
 	~Material();
 
 
-	void useMaterial(GLuint specularIntensityLocation, GLuint shininessLocation);
+	void UseMaterial(GLuint specularIntensityLocation, GLuint shininessLocation);
 
 private:
 	GLfloat specularIntensity; //low== dim, high == shiny spot, so how much it absorbs
