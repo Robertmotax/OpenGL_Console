@@ -13,13 +13,14 @@ PointLight::PointLight() : Light()
 PointLight::PointLight(GLfloat red, GLfloat green, GLfloat blue,
 	GLfloat aIntensity, GLfloat dIntensity,
 	GLfloat xPos, GLfloat yPos, GLfloat zPos,
-	GLfloat con, GLfloat lin, GLfloat exp) : Light(red, green, blue, aIntensity, dIntensity)
+	GLfloat con, GLfloat lin, GLfloat exp) : Light(1024, 1024, red, green, blue, aIntensity, dIntensity)
 {
 	position = glm::vec3(xPos, yPos, zPos);
 	constant = con;
 	linear = lin;
 	exponent = exp;
 }
+
 
 void PointLight::UseLight(GLuint ambientIntensityLocation, GLuint ambientColourLocation,
 	GLuint diffuseIntensityLocation, GLuint positionLocation, GLuint constantLocation,
