@@ -33,8 +33,8 @@ PointLight::PointLight(GLfloat shadowWidth, GLfloat shadowHeight,
 
 
 void PointLight::UseLight(GLuint ambientIntensityLocation, GLuint ambientColourLocation,
-	GLuint diffuseIntensityLocation, GLuint positionLocation, GLuint constantLocation,
-	GLuint linearLocation, GLuint exponentLocation)
+	GLuint diffuseIntensityLocation, GLuint positionLocation,
+	GLuint constantLocation, GLuint linearLocation, GLuint exponentLocation)
 {
 	glUniform3f(ambientColourLocation, colour.x, colour.y, colour.z);
 	glUniform1f(ambientIntensityLocation, ambientIntensity);
@@ -48,21 +48,20 @@ void PointLight::UseLight(GLuint ambientIntensityLocation, GLuint ambientColourL
 
 std::vector<glm::mat4> PointLight::CalculateLightTransform()
 {
-	std::vector<glm::mat4> lightTransforms;
-	lightTransforms.push_back(lightProj *
-		glm::lookAt(position, position + glm::vec3(1.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0)));
-	lightTransforms.push_back(lightProj *
-		glm::lookAt(position, position + glm::vec3(-1.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0)));
-	lightTransforms.push_back(lightProj *
-		glm::lookAt(position, position + glm::vec3(0.0, 1.0, 0.0), glm::vec3(0.0, 0.0, 1.0)));
-	lightTransforms.push_back(lightProj *
-		glm::lookAt(position, position + glm::vec3(0.0, -1.0, 0.0), glm::vec3(0.0, 0.0, -1.0)));
-	lightTransforms.push_back(lightProj *
-		glm::lookAt(position, position + glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, -1.0, 0.0)));
-	lightTransforms.push_back(lightProj *
-		glm::lookAt(position, position + glm::vec3(0.0, 0.0, -1.0), glm::vec3(0.0, -1.0, 0.0)));
+	std::vector<glm::mat4> lightMatrices;
+	//+x, -x
+	lightMatrices.push_back(lightProj * glm::lookAt(position, position + glm::vec3(1.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0)));
+	lightMatrices.push_back(lightProj * glm::lookAt(position, position + glm::vec3(-1.0, 0.0, 0.0), glm::vec3(0.0, -1.0, 0.0)));
 
-	return lightTransforms;
+	//+y, -y
+	lightMatrices.push_back(lightProj * glm::lookAt(position, position + glm::vec3(0.0, 1.0, 0.0), glm::vec3(0.0, 0.0, 1.0)));
+	lightMatrices.push_back(lightProj * glm::lookAt(position, position + glm::vec3(0.0, -1.0, 0.0), glm::vec3(0.0, 0.0, -1.0)));
+
+	//+z, -z
+	lightMatrices.push_back(lightProj * glm::lookAt(position, position + glm::vec3(0.0, 0.0, 1.0), glm::vec3(0.0, -1.0, 0.0)));
+	lightMatrices.push_back(lightProj * glm::lookAt(position, position + glm::vec3(0.0, 0.0, -1.0), glm::vec3(0.0, -1.0, 0.0)));
+
+	return lightMatrices;
 }
 
 glm::vec3 PointLight::GetPosition()
