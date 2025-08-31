@@ -10,15 +10,17 @@ out vec2 texCoord;
 //flat out vec3 Normal; // instead of interpolating each corner, it will use just one corner
 out vec3 Normal;
 out vec3 FragPos;
-
+out vec4 DirectionalLightSpacePos;
 
 uniform mat4 model;
 uniform mat4 projection;
 uniform mat4 view;
+uniform mat4 directionalLightTransform;
 
 void main()
 {
 	gl_Position = projection * view * model * vec4(pos, 1.0);
+	DirectionalLightSpacePos = directionalLightTransform * model * vec4(pos, 1.0);
 	vCol = vec4(clamp(pos, 0.0f, 1.0f), 1.0f);
 	
 	texCoord = tex;
