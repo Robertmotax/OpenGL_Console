@@ -19,10 +19,10 @@ void Model::RenderModel()
 	}
 }
 
-void Model::LoadModel(const std::string & fileName)
+void Model::LoadModel(const std::string& fileName)
 {
 	Assimp::Importer importer;
-	const aiScene *scene = importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenSmoothNormals | aiProcess_JoinIdenticalVertices);
+	const aiScene* scene = importer.ReadFile(fileName, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenSmoothNormals | aiProcess_JoinIdenticalVertices);
 
 	if (!scene)
 	{
@@ -35,7 +35,7 @@ void Model::LoadModel(const std::string & fileName)
 	LoadMaterials(scene);
 }
 
-void Model::LoadNode(aiNode * node, const aiScene * scene)
+void Model::LoadNode(aiNode* node, const aiScene* scene)
 {
 	for (size_t i = 0; i < node->mNumMeshes; i++)
 	{
@@ -48,7 +48,7 @@ void Model::LoadNode(aiNode * node, const aiScene * scene)
 	}
 }
 
-void Model::LoadMesh(aiMesh * mesh, const aiScene * scene)
+void Model::LoadMesh(aiMesh* mesh, const aiScene* scene)
 {
 	std::vector<GLfloat> vertices;
 	std::vector<unsigned int> indices;
@@ -81,10 +81,10 @@ void Model::LoadMesh(aiMesh * mesh, const aiScene * scene)
 	meshToTex.push_back(mesh->mMaterialIndex);
 }
 
-void Model::LoadMaterials(const aiScene * scene)
+void Model::LoadMaterials(const aiScene* scene)
 {
 	textureList.resize(scene->mNumMaterials);
-	
+
 	for (size_t i = 0; i < scene->mNumMaterials; i++)
 	{
 		aiMaterial* material = scene->mMaterials[i];
